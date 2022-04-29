@@ -1,8 +1,10 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using KC.WebApplication.Data;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((ctx, lc) => lc
+    .WriteTo.Console());
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -20,7 +22,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+app.UseSerilogRequestLogging();
+//app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 

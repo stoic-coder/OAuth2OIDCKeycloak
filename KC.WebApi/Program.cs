@@ -1,7 +1,11 @@
 using KC.WebApi.Repository;
 using KC.WebApi.Repository.Interfaces;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((ctx, lc) => lc
+    .WriteTo.Console());
 
 // Add services to the container.
 builder.Services.AddSingleton<IWeatherForecastRepository, WeatherForecastRepository>();
@@ -20,9 +24,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseSerilogRequestLogging();
 
-app.UseAuthorization();
+//app.UseHttpsRedirection();
+
+//app.UseAuthorization();
 
 app.MapControllers();
 
