@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : KC.WebApi
+// Author           : stoic-coder feat. Nisha Hans
+// Created          : 04-29-2022
+//
+// Last Modified By : stoic-coder feat. Nisha Hans
+// Last Modified On : 04-29-2022
+// ***********************************************************************
+// <copyright file="Program.cs" company="KC.WebApi">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using KC.WebApi.Repository;
 using KC.WebApi.Repository.Interfaces;
 using Serilog;

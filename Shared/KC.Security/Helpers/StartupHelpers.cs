@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : KC.Security
+// Author           : stoic-coder feat. Nisha Hans
+// Created          : 04-29-2022
+//
+// Last Modified By : stoic-coder feat. Nisha Hans
+// Last Modified On : 04-29-2022
+// ***********************************************************************
+// <copyright file="StartupHelpers.cs" company="KC.Security">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using KC.Security.AuthorizationHelpers;
 using KC.Security.HttpHandlers;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -14,9 +27,17 @@ using SameSiteMode = Microsoft.AspNetCore.Http.SameSiteMode;
 
 namespace KC.Security.Helpers;
 
- public static class StartupHelpers
+/// <summary>
+/// Class StartupHelpers.
+/// </summary>
+public static class StartupHelpers
     {
-        public static void ConfigureHttpClients(IConfiguration configuration, IServiceCollection services)
+    /// <summary>
+    /// Configures the HTTP clients.
+    /// </summary>
+    /// <param name="configuration">The configuration.</param>
+    /// <param name="services">The services.</param>
+    public static void ConfigureHttpClients(IConfiguration configuration, IServiceCollection services)
         {
             services.AddTransient(typeof(BearerTokenHandler));
             services.AddHttpContextAccessor();
@@ -30,7 +51,13 @@ namespace KC.Security.Helpers;
 
           
         }
-        public static void ConfigureJwtBearer(IConfiguration configuration,IWebHostEnvironment  currentEnvironment,IServiceCollection services)
+    /// <summary>
+    /// Configures the JWT bearer.
+    /// </summary>
+    /// <param name="configuration">The configuration.</param>
+    /// <param name="currentEnvironment">The current environment.</param>
+    /// <param name="services">The services.</param>
+    public static void ConfigureJwtBearer(IConfiguration configuration,IWebHostEnvironment  currentEnvironment,IServiceCollection services)
         {
             services.AddAuthorization();
             services.Configure<CookiePolicyOptions>(options =>
@@ -66,7 +93,14 @@ namespace KC.Security.Helpers;
                 };
             });
         }
-        public static void ConfigureOpenIdConnect(IConfiguration configuration,IWebHostEnvironment  currentEnvironment,IServiceCollection services, bool isSameSiteCookieSecure = true)
+    /// <summary>
+    /// Configures the open identifier connect.
+    /// </summary>
+    /// <param name="configuration">The configuration.</param>
+    /// <param name="currentEnvironment">The current environment.</param>
+    /// <param name="services">The services.</param>
+    /// <param name="isSameSiteCookieSecure">if set to <c>true</c> [is same site cookie secure].</param>
+    public static void ConfigureOpenIdConnect(IConfiguration configuration,IWebHostEnvironment  currentEnvironment,IServiceCollection services, bool isSameSiteCookieSecure = true)
         {
             services.AddAntiforgery(o => o.SuppressXFrameOptionsHeader = true);
             services.Configure<CookiePolicyOptions>(options =>
@@ -125,7 +159,12 @@ namespace KC.Security.Helpers;
                 });
 
         }
-        private static void CheckSameSite(HttpContext httpContext, CookieOptions options)
+    /// <summary>
+    /// Checks the same site.
+    /// </summary>
+    /// <param name="httpContext">The HTTP context.</param>
+    /// <param name="options">The options.</param>
+    private static void CheckSameSite(HttpContext httpContext, CookieOptions options)
         {
            if (options.SameSite != SameSiteMode.None) return;
             var userAgent = httpContext.Request.Headers["User-Agent"].ToString();
@@ -134,7 +173,12 @@ namespace KC.Security.Helpers;
                  options.SameSite = SameSiteMode.Unspecified;
             }
         }
-        private static bool DisallowsSameSiteNone(string userAgent)
+    /// <summary>
+    /// Disallowses the same site none.
+    /// </summary>
+    /// <param name="userAgent">The user agent.</param>
+    /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+    private static bool DisallowsSameSiteNone(string userAgent)
         {
             if (string.IsNullOrEmpty(userAgent))
             {

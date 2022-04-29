@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : KC.Security
+// Author           : stoic-coder feat. Nisha Hans
+// Created          : 04-29-2022
+//
+// Last Modified By : stoic-coder feat. Nisha Hans
+// Last Modified On : 04-29-2022
+// ***********************************************************************
+// <copyright file="HttpContextExtensions.cs" company="KC.Security">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System.Globalization;
 using KC.Security.Helpers;
 using Microsoft.AspNetCore.Authentication;
@@ -8,8 +21,16 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 namespace KC.Security.Extensions;
 
+/// <summary>
+/// Class HttpContextExtensions.
+/// </summary>
 public static class HttpContextExtensions
 {
+    /// <summary>
+    /// Is access token expired as an asynchronous operation.
+    /// </summary>
+    /// <param name="context">The context.</param>
+    /// <returns>A Task&lt;System.Boolean&gt; representing the asynchronous operation.</returns>
     public static async Task<bool> IsAccessTokenExpiredAsync(this HttpContext context)
     {
         var expiresAt = await context.GetTokenAsync("expires_at");
@@ -19,6 +40,11 @@ public static class HttpContextExtensions
         return (expiresAtAsDateTimeOffset).ToUniversalTime() < DateTime.UtcNow;
     }
 
+    /// <summary>
+    /// Get access token as an asynchronous operation.
+    /// </summary>
+    /// <param name="context">The context.</param>
+    /// <returns>A Task&lt;System.String&gt; representing the asynchronous operation.</returns>
     public static async Task<string?> GetAccessTokenAsync(this HttpContext context)
     {
         string? accessToken = null;
@@ -42,7 +68,12 @@ public static class HttpContextExtensions
             
         return accessToken;
     }
-    
+
+    /// <summary>
+    /// Logout as an asynchronous operation.
+    /// </summary>
+    /// <param name="context">The context.</param>
+    /// <returns>A Task representing the asynchronous operation.</returns>
     public static async Task LogoutAsync(this HttpContext context)
     {
         await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : KC.WebApplication
+// Author           : stoic-coder feat. Nisha Hans
+// Created          : 04-29-2022
+//
+// Last Modified By : stoic-coder feat. Nisha Hans
+// Last Modified On : 04-29-2022
+// ***********************************************************************
+// <copyright file="Program.cs" company="KC.WebApplication">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using KC.WebApplication.Data;
 using Serilog;
 
