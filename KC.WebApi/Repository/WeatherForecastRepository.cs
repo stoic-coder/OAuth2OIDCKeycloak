@@ -19,10 +19,11 @@ public class WeatherForecastRepository:IWeatherForecastRepository
       public  List<WeatherForecast> GetForecast(DateTime startDate)
         {
             var resultList = new List<WeatherForecast>();
-            for (var i = 1; i < 5; i++)
+            for (var i = 1; i <= 30; i++)
             {
                 resultList.Add(new WeatherForecast()
                 {
+                    Id = i,
                     Date = startDate.AddDays(i),
                     TemperatureC = Random.Shared.Next(4, 17),
                     Summary = Summaries[Random.Shared.Next(Summaries.Length)]
