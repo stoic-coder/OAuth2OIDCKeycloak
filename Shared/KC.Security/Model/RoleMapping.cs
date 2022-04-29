@@ -1,4 +1,4 @@
-﻿// ***********************************************************************
+// ***********************************************************************
 // Assembly         : KC.Security
 // Author           : stoic-coder feat. Nisha Hans
 // Created          : 04-29-2022
@@ -12,6 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 using Newtonsoft.Json;
+// ReSharper disable StringLiteralTypo
 
 namespace KC.Security.Model;
 
