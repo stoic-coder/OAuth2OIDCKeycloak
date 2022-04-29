@@ -1,4 +1,4 @@
-namespace KC.WebApi;
+namespace KC.Models;
 
 public class WeatherForecast
 {

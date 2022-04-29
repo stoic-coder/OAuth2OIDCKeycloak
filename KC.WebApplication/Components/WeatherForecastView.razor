@@ -1,5 +1,6 @@
-﻿@page "/fetchdata"
-@inject HttpClient Http
+@page "/weatherforecast"
+@inherits KC.WebApplication.Components.WeatherForecastViewBase
+
 
 <PageTitle>Wettervorhersage</PageTitle>
 
@@ -9,7 +10,7 @@
 
 <p style="float: right;">AKTUELLES WETTER</p>
 
-@if (forecasts == null)
+@if (Forecasts == null)
 {
     <p>
         <em>Loading...</em>
@@ -22,17 +23,17 @@ else
         <tr>
             <th>Datum</th>
             <th>Temp. (C)</th>
-           
+
             <th>Summary</th>
         </tr>
         </thead>
         <tbody>
-        @foreach (var forecast in forecasts)
+        @foreach (var forecast in Forecasts)
         {
             <tr>
                 <td>@forecast.Date.ToString("dd/MM/yyyy")</td>
                 <td>@forecast.TemperatureC ‎°C </td>
-               
+
                 <td>@forecast.Summary</td>
             </tr>
         }
@@ -41,22 +42,6 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
-
-    protected override async Task OnInitializedAsync()
-    {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
-    }
-
-    public class WeatherForecast
-    {
-        public DateTime Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public string? Summary { get; set; }
-
-        public int TemperatureF => 32 + (int) (TemperatureC / 0.5556);
-    }
+   
 
 }

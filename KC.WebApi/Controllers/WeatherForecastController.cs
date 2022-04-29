@@ -1,32 +1,31 @@
+using KC.WebApi.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-
 namespace KC.WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+   
 
     private readonly ILogger<WeatherForecastController> _logger;
+    private IWeatherForecastRepository WeatherForecastRepository { get; }
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger,IWeatherForecastRepository weatherForecastRepository)
     {
         _logger = logger;
+        WeatherForecastRepository = weatherForecastRepository;
+    }
+    
+    [HttpGet("GetWeatherForecast", Name = nameof(GetWeatherForecast))]  
+    [Produces("application/json")]
+    public  IActionResult GetWeatherForecast()
+    {
+        var remoteIp = HttpContext.Connection.RemoteIpAddress;
+        var route = HttpContext.Request.Path;
+        _logger.LogInformation($"Accessing {route} from ip {remoteIp}");
+        var result =  WeatherForecastRepository.GetForecast(DateTime.Now);
+        return Ok(result);
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
-    {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
-    }
 }
