@@ -4,11 +4,11 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5078",
+      "launchUrl": "https://localhost:7078",
       "applicationUrl": "https://localhost:7078;http://localhost:5078",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ApiUri": "http://localhost:5174"
+        "ApiUri": "https://localhost:5177"
       }
     }
   }

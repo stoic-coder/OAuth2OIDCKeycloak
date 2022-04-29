@@ -1,14 +1,18 @@
 @page "/weatherforecast"
+@using KC.Models
 @inherits KC.WebApplication.Components.WeatherForecastViewBase
 
 
 <PageTitle>Wettervorhersage</PageTitle>
 
 <h1>5-Tage-Wettervorhersage</h1>
+<p style="padding-left: 79%;">AKTUELLES WETTER</p>
+<h3 style="padding-left: 84%;"><span class="material-icons">
+                               flare
+                               </span>13‎°C Sonnig</h3>
 
-<h3 style="float: right">13‎°C Sonnig</h3>
 
-<p style="float: right;">AKTUELLES WETTER</p>
+<br/>
 
 @if (Forecasts == null)
 {
@@ -18,27 +22,24 @@
 }
 else
 {
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Datum</th>
-            <th>Temp. (C)</th>
+    
+    <RadzenDataGrid   Data="@Forecasts"  FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" 
+                      FilterMode="FilterMode.Advanced" AllowSorting="true" AllowFiltering="false" 
+                      AllowPaging="true" PageSize="15" PagerHorizontalAlign="HorizontalAlign.Center" 
+                      TItem="WeatherForecast" ColumnWidth="200px">
+    <Columns>
+        <RadzenDataGridColumn TItem="WeatherForecast" Property="Id" Filterable="false" Title="Id" Frozen="true" Width="50px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn TItem="WeatherForecast" Property="Date" Title="Datum" FormatString="{0:d}"/>
+        <RadzenDataGridColumn TItem="WeatherForecast" Property="TemperatureC" Title="Temp. (‎°C)">
+                    <Template Context="f">
+                        @f.TemperatureC‎°C 
+                    </Template>
+                </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="WeatherForecast" Property="Summary" Title="Summary" />
+    </Columns>
+</RadzenDataGrid>
 
-            <th>Summary</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var forecast in Forecasts)
-        {
-            <tr>
-                <td>@forecast.Date.ToString("dd/MM/yyyy")</td>
-                <td>@forecast.TemperatureC ‎°C </td>
-
-                <td>@forecast.Summary</td>
-            </tr>
-        }
-        </tbody>
-    </table>
+  
 }
 
 @code {

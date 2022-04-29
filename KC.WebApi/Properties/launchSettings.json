@@ -4,8 +4,8 @@
     "KC.WebApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "launchUrl": "http://localhost:5174/swagger",
+      "launchBrowser": false,
+      "launchUrl": "https://localhost:5177/swagger",
       "applicationUrl": "http://localhost:5174;https://localhost:5177",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

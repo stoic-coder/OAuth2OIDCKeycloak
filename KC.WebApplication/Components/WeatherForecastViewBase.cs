@@ -1,6 +1,7 @@
 using KC.Models;
 using KC.WebApplication.Data;
 using Microsoft.AspNetCore.Components;
+using Radzen;
 
 namespace KC.WebApplication.Components;
 
@@ -18,5 +19,10 @@ public class WeatherForecastViewBase : ComponentBase
     protected override async Task OnInitializedAsync()
     {
         Forecasts = await ApiService.GetWeatherForecastAsync();
+    }
+    protected async Task LoadData(LoadDataArgs args)
+    {
+        Forecasts = Forecasts = await ApiService.GetWeatherForecastAsync();
+       
     }
 }
