@@ -21,35 +21,17 @@ public class Roles
     /// <summary>
     /// The default role
     /// </summary>
-    public const string DefaultRole = "hlm-user-role";
+    public const string DefaultRole = "default-role";
     /// <summary>
     /// The admin role
     /// </summary>
-    public const string AdminRole = "hlm-admin-role";
-    // ReSharper disable once InconsistentNaming
-    /// <summary>
-    /// The CRM role
-    /// </summary>
-    public const string CRMRole = "hlm-crm-role";
-    // ReSharper disable once InconsistentNaming
-    /// <summary>
-    /// The CRM assist role
-    /// </summary>
-    public const string CRMAssistRole = "hlm-crm-assist-role";
-    /// <summary>
-    /// The dispatcher role
-    /// </summary>
-    public const string DispatcherRole = "hlm-dispatcher-role";
+    public const string AdminRole = "admin-role";
     /// <summary>
     /// The data reader
     /// </summary>
-    public const string DataReader = "hlm-data-reader-role";
+    public const string DataReader = "data-reader-role";
     /// <summary>
     /// The data writer
     /// </summary>
-    public const string DataWriter = "hlm-data-writer-role";
-    /// <summary>
-    /// The work council user
-    /// </summary>
-    public const string WorkCouncilUser = "hlm-work-council-role";
+    public const string DataWriter = "data-writer-role";
 }

@@ -31,7 +31,7 @@ public class OAuthInfo : IOAuthInfo
     /// <summary>
     /// The possible default roles
     /// </summary>
-    private static readonly string[] PossibleDefaultRoles = { Roles.DispatcherRole, Roles.CRMRole };
+    private static readonly string[] PossibleDefaultRoles = { Roles.DefaultRole, Roles.DataReader };
 
     /// <summary>
     /// Initializes a new instance of the <see cref="OAuthInfo"/> class.
