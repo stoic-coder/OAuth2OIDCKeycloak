@@ -1,4 +1,5 @@
 using KC.WebApplication.Data;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Serilog;
@@ -12,7 +13,7 @@ builder.Host.UseSerilog((_, lc) => lc
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-builder.Services.AddTransient<IApiService, ApiService>();
+builder.Services.AddTransient<IWeatherForecastService, WeatherForecastService>();
 var configuration = builder.Configuration;
 
 builder.Services.AddAuthentication(options =>
@@ -35,6 +36,13 @@ builder.Services.AddAuthentication(options =>
     });
 
 
+builder.Services.AddAccessTokenManagement();
+builder.Services.AddUserAccessTokenHttpClient(nameof(WeatherForecastService), null, 
+    client =>
+    {
+        client.BaseAddress = new Uri("https://localhost:5005");
+    });
+    
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -8,7 +8,7 @@ public class WeatherForecastViewBase : ComponentBase
 {
    
 #pragma warning disable CS8618
-    [Inject] private IApiService ApiService { get; set; }
+    [Inject] private IWeatherForecastService WeatherForecastService { get; set; }
    
 #pragma warning restore CS8618
     
@@ -18,6 +18,6 @@ public class WeatherForecastViewBase : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        Forecasts = await ApiService.GetWeatherForecastAsync();
+        Forecasts = await WeatherForecastService.GetWeatherForecastAsync();
     }
 }
