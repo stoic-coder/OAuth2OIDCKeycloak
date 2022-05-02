@@ -1,4 +1,5 @@
 using KC.WebApi.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace KC.WebApi.Controllers;
 
@@ -17,6 +18,7 @@ public class WeatherForecastController : ControllerBase
         WeatherForecastRepository = weatherForecastRepository;
     }
     
+    [Authorize]
     [HttpGet("GetWeatherForecast", Name = nameof(GetWeatherForecast))]  
     [Produces("application/json")]
     public  IActionResult GetWeatherForecast()
