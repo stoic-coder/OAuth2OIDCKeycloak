@@ -1,5 +1,6 @@
 using KC.Library;
 using KC.WebApi.Repository.Interfaces;
+// ReSharper disable StringLiteralTypo
 
 // ReSharper disable StringLiteralTypo
 
