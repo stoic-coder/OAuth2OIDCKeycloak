@@ -1,4 +1,5 @@
 @page "/weatherforecast"
+@attribute [Authorize]
 @using KC.Models
 @inherits KC.WebApplication.Components.WeatherForecastViewBase
 
@@ -6,6 +7,7 @@
 <PageTitle>Wettervorhersage</PageTitle>
 
 <h1>5-Tage-Wettervorhersage</h1>
+
 <p style="padding-left: 79%;">AKTUELLES WETTER</p>
 <h3 style="padding-left: 84%;"><span class="material-icons">
                                flare

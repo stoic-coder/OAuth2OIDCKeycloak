@@ -1,5 +1,6 @@
 using KC.Models;
 using KC.WebApi.Repository.Interfaces;
+// ReSharper disable StringLiteralTypo
 
 namespace KC.WebApi.Repository;
 

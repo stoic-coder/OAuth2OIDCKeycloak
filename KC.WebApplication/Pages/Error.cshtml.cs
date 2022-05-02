@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+// ReSharper disable NotAccessedField.Local
 
 namespace KC.WebApplication.Pages;
 
