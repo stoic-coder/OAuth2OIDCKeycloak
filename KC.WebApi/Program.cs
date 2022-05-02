@@ -1,3 +1,4 @@
+using KC.Models;
 using KC.WebApi.Repository;
 using KC.WebApi.Repository.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -52,6 +53,10 @@ builder.Services
         };
     });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(Policies.NeedsWeatherForecast,  Policies.NeedsWeatherForecastPolicy());
+});
 
 var app = builder.Build();
 

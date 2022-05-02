@@ -1,5 +1,5 @@
+using KC.Models;
 using KC.WebApplication.Data;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Serilog;
@@ -37,12 +37,20 @@ builder.Services.AddAuthentication(options =>
 
 
 builder.Services.AddAccessTokenManagement();
-builder.Services.AddUserAccessTokenHttpClient(nameof(WeatherForecastService), null, 
+builder.Services.AddUserAccessTokenHttpClient(nameof(WeatherForecastService), null,
     client =>
     {
-        client.BaseAddress = new Uri("https://localhost:5005");
+        var uri = configuration.GetValue<string>("ApiUri");
+        client.BaseAddress = new Uri(uri);
     });
-    
+
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(Policies.NeedsWeatherForecast,Policies.NeedsWeatherForecastPolicy());
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
