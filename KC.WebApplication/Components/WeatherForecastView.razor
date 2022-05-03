@@ -1,31 +1,35 @@
 @page "/weatherforecast"
 @attribute [Authorize]
 @using KC.Models
+@using System.Net
 @inherits KC.WebApplication.Components.WeatherForecastViewBase
 
 
 <PageTitle>Wettervorhersage</PageTitle>
 
-<h1>5-Tage-Wettervorhersage</h1>
-
-<p style="padding-left: 79%;">AKTUELLES WETTER</p>
-<h3 style="padding-left: 84%;"><span class="material-icons">
-                               flare
-                               </span>13‎°C Sonnig</h3>
 
 
-<br/>
-
-@if (Forecasts == null)
+@if (WeatherForecastResponse == null)
 {
-    <p>
-        <em>Loading...</em>
-    </p>
+    <h3>Loading...</h3>
+   
+}
+else if (WeatherForecastResponse.StatusCode == HttpStatusCode.Unauthorized)
+{ 
+      <h1>@WeatherForecastResponse.StatusMessage</h1>
 }
 else
 {
-    
-    <RadzenDataGrid   Data="@Forecasts"  FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" 
+    <h1>@WeatherForecastResponse.Count-Tage-Wettervorhersage</h1>
+
+    <p style="padding-left: 79%;">AKTUELLES WETTER</p>
+    <h3 style="padding-left: 84%;"><span class="material-icons">
+        flare
+    </span>13‎°C Sonnig</h3>
+
+
+    <br/>
+    <RadzenDataGrid   Data="@WeatherForecastResponse.Data"  FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" 
                       FilterMode="FilterMode.Advanced" AllowSorting="true" AllowFiltering="false" 
                       AllowPaging="true" PageSize="15" PagerHorizontalAlign="HorizontalAlign.Center" 
                       TItem="WeatherForecast" ColumnWidth="200px">
@@ -44,7 +48,3 @@ else
   
 }
 
-@code {
-   
-
-}

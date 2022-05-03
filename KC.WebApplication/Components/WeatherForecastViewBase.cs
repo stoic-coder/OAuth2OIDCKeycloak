@@ -15,9 +15,11 @@ public class WeatherForecastViewBase : ComponentBase
 #pragma warning disable CS8618
     protected List<WeatherForecast>? Forecasts{ get; private set; }
 #pragma warning restore CS8618
+    public WeatherForecastResponseModel WeatherForecastResponse { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        WeatherForecastResponse=await ApiService.GetWeatherForecastAsync1();
         Forecasts = await ApiService.GetWeatherForecastAsync();
     }
 }
