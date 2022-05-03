@@ -6,20 +6,15 @@ namespace KC.WebApplication.Components;
 
 public class WeatherForecastViewBase : ComponentBase
 {
-   
+
 #pragma warning disable CS8618
-    [Inject] private IApiService ApiService { get; set; }
-   
+    [Inject] private IWeatherForecastService ApiService { get; set; }
 #pragma warning restore CS8618
-    
-#pragma warning disable CS8618
-    protected List<WeatherForecast>? Forecasts{ get; private set; }
-#pragma warning restore CS8618
-    public WeatherForecastResponseModel WeatherForecastResponse { get; set; }
+    protected WeatherForecastResponseModel WeatherForecastResponse { get; set; } = null!;
 
     protected override async Task OnInitializedAsync()
     {
-        WeatherForecastResponse=await ApiService.GetWeatherForecastAsync1();
-        Forecasts = await ApiService.GetWeatherForecastAsync();
+        WeatherForecastResponse=await ApiService.GetWeatherForecastAsync();
+     
     }
 }

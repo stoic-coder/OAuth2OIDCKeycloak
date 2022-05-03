@@ -12,7 +12,7 @@ builder.Host.UseSerilog((_, lc) => lc
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-builder.Services.AddTransient<IApiService, ApiService>();
+builder.Services.AddTransient<IWeatherForecastService, WeatherForecastService>();
 var configuration = builder.Configuration;
 
 builder.Services.AddAuthentication(options =>
