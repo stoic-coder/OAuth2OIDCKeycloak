@@ -16,7 +16,7 @@ public class WeatherForecastViewBase : ComponentBase
     public AuthenticationStateProvider AuthenticationStateProvider { get; set; } = default!;
 
 #pragma warning restore CS8618
-    protected WeatherForecastResponseModel WeatherForecastResponse { get; set; } = null!;
+    protected WeatherForecastResponseModel? WeatherForecastResponse { get; set; }
 
     private List<Claim>? Claims { get; set; }
     [Inject] private IWeatherForecastService? WeatherForecastService { get; set; }
@@ -28,8 +28,7 @@ public class WeatherForecastViewBase : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        WeatherForecastResponse=await ApiService.GetWeatherForecastAsync();
-        
+       
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
             Claims = authState.User.Claims.ToList();
             var preferredUserNameClaim = authState.User.FindFirst("preferred_username");
@@ -42,6 +41,11 @@ public class WeatherForecastViewBase : ComponentBase
             if (claim is not null)
             {
                 HasOokWeatherClaim = true;
+            }
+
+            if (HasOokWeatherClaim)
+            {
+                WeatherForecastResponse=await ApiService.GetWeatherForecastAsync();
             }
     }
 
