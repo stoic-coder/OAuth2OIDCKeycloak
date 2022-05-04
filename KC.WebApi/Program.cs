@@ -1,3 +1,4 @@
+using KC.Library;
 using KC.WebApi.Repository;
 using KC.WebApi.Repository.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -51,6 +52,11 @@ builder.Services
             ValidAudiences = new string[] { audience, "realm-management", "account" }
         };
     });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy(Policies.NeedsWeatherForecast,  Policies.NeedsWeatherForecastPolicy());
+});
 
 var app = builder.Build();
 
