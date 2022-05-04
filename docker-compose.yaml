@@ -1,0 +1,42 @@
+version: '3.3'
+services:
+  mysqldb:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'keycloak'
+      MYSQL_USER: 'keycloak'
+      MYSQL_PASSWORD: 'a99CcKNAPAaQepMn'
+      MYSQL_ROOT_PASSWORD: 'a99CcKNAPAaQepMn'
+    ports:
+      - '3306:3306'
+      # Where our data will be persisted
+    volumes:
+      - ./data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: 10.88.0.12
+      PMA_ARBITRARY: 1
+      PMA_PORT: 3306
+    ports:
+      - '8080:80'
+
+  keycloak:
+    depends_on:
+      - mysqldb
+    image: jboss/keycloak:latest
+    restart: always
+    environment:
+        DB_ADDR: 10.88.0.12
+        DB_PORT: 3306
+        DB_DATABASE: keycloak
+        DB_USER: keycloak
+        DB_PASSWORD: a99CcKNAPAaQepMn
+        DB_VENDOR: mysql
+        KEYCLOAK_USER: admin
+        PROXY_ADDRESS_FORWARDING: "true"
+    ports:
+        - '8088:8080'
