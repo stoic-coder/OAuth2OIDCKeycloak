@@ -29,6 +29,14 @@ public class WeatherForecastViewBase : ComponentBase
             PreferredUserName = preferredUserNameCalim.Value;
         }
 
+        var claim = Claims.FirstOrDefault(c => c.Value == "ook-weather");
+        if (claim is not null)
+        {
+            HasOokWeatherClaim = true;
+        }
+        
         Forecasts = await WeatherForecastService!.GetWeatherForecastAsync()!;
     }
+
+    public bool HasOokWeatherClaim { get; set; }
 }
