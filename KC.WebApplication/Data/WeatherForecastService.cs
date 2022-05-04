@@ -19,7 +19,6 @@ public class WeatherForecastService:IWeatherForecastService
    
     public async Task<WeatherForecastResponseModel> GetWeatherForecastAsync()
     {
-       
         var apiUri = new Uri($"{_baseDataApiUri}/{ApiRouteScheduleType}/GetWeatherForecast");
         using var client = _httpClientFactory.CreateClient(nameof(WeatherForecastService));
         var response = await client.GetAsync(apiUri);

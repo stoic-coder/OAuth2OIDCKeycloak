@@ -1,3 +1,4 @@
+using KC.Library;
 using KC.WebApi.Repository.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,15 +11,17 @@ public class WeatherForecastController : ControllerBase
    
 
     private readonly ILogger<WeatherForecastController> _logger;
+   
     private IWeatherForecastRepository WeatherForecastRepository { get; }
 
     public WeatherForecastController(ILogger<WeatherForecastController> logger,IWeatherForecastRepository weatherForecastRepository)
     {
         _logger = logger;
+      
         WeatherForecastRepository = weatherForecastRepository;
     }
-    
-    [Authorize]
+ 
+    [Authorize(Policy = Policies.NeedsWeatherForecast)]
     [HttpGet("GetWeatherForecast", Name = nameof(GetWeatherForecast))]  
     [Produces("application/json")]
     public  IActionResult GetWeatherForecast()
@@ -29,5 +32,5 @@ public class WeatherForecastController : ControllerBase
         var result =  WeatherForecastRepository.GetForecast(DateTime.Now);
         return Ok(result);
     }
-
+    
 }
