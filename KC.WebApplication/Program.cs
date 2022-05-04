@@ -35,6 +35,14 @@ builder.Services.AddAuthentication(options =>
     });
 
 
+builder.Services.AddAccessTokenManagement();
+builder.Services.AddUserAccessTokenHttpClient(nameof(WeatherForecastService), null,
+    client =>
+    {
+        var uri = configuration.GetValue<string>("ApiUri");
+        client.BaseAddress = new Uri(uri);
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
