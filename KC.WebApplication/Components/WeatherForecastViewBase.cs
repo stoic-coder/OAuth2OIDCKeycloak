@@ -1,7 +1,6 @@
 using KC.Models;
 using KC.WebApplication.Data;
 using Microsoft.AspNetCore.Components;
-using Radzen;
 
 namespace KC.WebApplication.Components;
 
@@ -9,20 +8,16 @@ public class WeatherForecastViewBase : ComponentBase
 {
    
 #pragma warning disable CS8618
-    [Inject] private IApiService ApiService { get; set; }
+    [Inject] private IWeatherForecastService WeatherForecastService { get; set; }
+   
 #pragma warning restore CS8618
     
 #pragma warning disable CS8618
-    protected List<WeatherForecast> Forecasts{ get; set; }
+    protected List<WeatherForecast>? Forecasts{ get; private set; }
 #pragma warning restore CS8618
 
     protected override async Task OnInitializedAsync()
     {
-        Forecasts = await ApiService.GetWeatherForecastAsync();
-    }
-    protected async Task LoadData(LoadDataArgs args)
-    {
-        Forecasts = Forecasts = await ApiService.GetWeatherForecastAsync();
-       
+        Forecasts = await WeatherForecastService.GetWeatherForecastAsync();
     }
 }

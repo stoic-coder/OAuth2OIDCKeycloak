@@ -17,4 +17,9 @@
       <ProjectReference Include="..\Shared\KC.Models\KC.Models.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Data\IApiService.cs" />
+      <Compile Remove="Data\ApiService.cs" />
+    </ItemGroup>
+
 </Project>
