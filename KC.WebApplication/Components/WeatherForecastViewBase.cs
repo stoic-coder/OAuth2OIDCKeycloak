@@ -21,9 +21,7 @@ public class WeatherForecastViewBase : ComponentBase
     private List<Claim>? Claims { get; set; }
     [Inject] private IWeatherForecastService? WeatherForecastService { get; set; }
 
-    public string? PreferredUserName { get; set; } = "Unknown";
-
-    protected List<WeatherForecast>? Forecasts { get; private set; }
+    private string? PreferredUserName { get; set; } = "Unknown";
 
 
     protected override async Task OnInitializedAsync()
@@ -49,5 +47,5 @@ public class WeatherForecastViewBase : ComponentBase
             }
     }
 
-    public bool HasOokWeatherClaim { get; set; }
+    private bool HasOokWeatherClaim { get; set; }
 }
