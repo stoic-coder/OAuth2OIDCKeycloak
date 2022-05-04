@@ -1,4 +1,4 @@
-using KC.Models;
+using KC.Library;
 
 namespace KC.WebApi.Repository.Interfaces;
 
