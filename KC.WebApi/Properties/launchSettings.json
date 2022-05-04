@@ -1,0 +1,17 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "KC.WebApi": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "https://localhost:5177/swagger",
+      "applicationUrl": "http://localhost:5174;https://localhost:5177",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Options__ClientId": "ook-client",
+        "Options__Authority": "https://idp.rrlab.net/auth/realms/ook"
+      }
+    }
+  }
+}

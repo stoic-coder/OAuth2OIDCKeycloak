@@ -1,0 +1,28 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>KC.WebApplication</PageTitle>
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu/>
+    </div>
+
+    <main>
+        
+        <div class="top-row px-4">
+            <RadzenCard Style="width: fit-content; min-width: 60px;" >
+                <RadzenMenu >
+                    <RadzenMenuItem Text="Username" Icon="account_circle">
+                        <RadzenMenuItem Text="Logout" Path="" Icon="input"></RadzenMenuItem>
+                        </RadzenMenuItem>
+                       
+                </RadzenMenu>
+            </RadzenCard>
+            
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>

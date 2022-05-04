@@ -1,0 +1,50 @@
+@page "/weatherforecast"
+@attribute [Authorize]
+@using KC.Models
+@inherits KC.WebApplication.Components.WeatherForecastViewBase
+
+
+<PageTitle>Wettervorhersage</PageTitle>
+
+<h1>5-Tage-Wettervorhersage</h1>
+
+<p style="padding-left: 79%;">AKTUELLES WETTER</p>
+<h3 style="padding-left: 84%;"><span class="material-icons">
+                               flare
+                               </span>13‎°C Sonnig</h3>
+
+
+<br/>
+
+@if (Forecasts == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    
+    <RadzenDataGrid   Data="@Forecasts"  FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" 
+                      FilterMode="FilterMode.Advanced" AllowSorting="true" AllowFiltering="false" 
+                      AllowPaging="true" PageSize="15" PagerHorizontalAlign="HorizontalAlign.Center" 
+                      TItem="WeatherForecast" ColumnWidth="200px">
+    <Columns>
+        <RadzenDataGridColumn TItem="WeatherForecast" Property="Id" Filterable="false" Title="Id" Frozen="true" Width="50px" TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn TItem="WeatherForecast" Property="Date" Title="Datum" FormatString="{0:d}"/>
+        <RadzenDataGridColumn TItem="WeatherForecast" Property="TemperatureC" Title="Temp. (‎°C)">
+                    <Template Context="f">
+                        @f.TemperatureC‎°C 
+                    </Template>
+                </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="WeatherForecast" Property="Summary" Title="Summary" />
+    </Columns>
+</RadzenDataGrid>
+
+  
+}
+
+@code {
+   
+
+}

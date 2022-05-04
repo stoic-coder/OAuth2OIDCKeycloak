@@ -1,11 +1,11 @@
-﻿# Default ignored files
+# Default ignored files
 /shelf/
 /workspace.xml
 # Rider ignored files
-/.idea.OAuth2OIDCKeycloak.iml
-/contentModel.xml
-/projectSettingsUpdater.xml
 /modules.xml
+/contentModel.xml
+/.idea.OAuth2OIDCKeycloak.iml
+/projectSettingsUpdater.xml
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
