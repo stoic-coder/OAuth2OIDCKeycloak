@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Shared\KC.Models\KC.Models.csproj" />
+      <ProjectReference Include="..\Shared\KC.Library\KC.Library.csproj" />
     </ItemGroup>
 
 </Project>

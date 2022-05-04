@@ -1,4 +1,4 @@
-namespace KC.Models;
+namespace KC.Library;
 
 public class WeatherForecast
 {

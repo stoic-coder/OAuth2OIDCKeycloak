@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KC.WebApplication", "KC.Web
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{F099EB36-282A-4E1A-B493-A00F60148287}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KC.Models", "Shared\KC.Models\KC.Models.csproj", "{8D627F4B-4FE4-492C-8BF8-1B3996A632FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KC.Library", "Shared\KC.Library\KC.Library.csproj", "{8D627F4B-4FE4-492C-8BF8-1B3996A632FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
