@@ -1,7 +1,4 @@
-using KC.Models;
 using KC.WebApplication.Data;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,42 +11,6 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddTransient<IWeatherForecastService, WeatherForecastService>();
-var configuration = builder.Configuration;
-
-builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-    })
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
-    {
-        options.Authority = configuration.GetValue<string>("Options:Authority");
-        
-        options.ClientId = configuration.GetValue<string>("Options:ClientId");
-        options.ClientSecret = configuration.GetValue<string>("Options:ClientSecret");
-        
-        options.ResponseType = "code id_token";
-        options.SaveTokens = true;
-
-        options.GetClaimsFromUserInfoEndpoint = true;
-    });
-
-
-builder.Services.AddAccessTokenManagement();
-builder.Services.AddUserAccessTokenHttpClient(nameof(WeatherForecastService), null,
-    client =>
-    {
-        var uri = configuration.GetValue<string>("ApiUri");
-        client.BaseAddress = new Uri(uri);
-    });
-
-
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy(Policies.NeedsWeatherForecast,Policies.NeedsWeatherForecastPolicy());
-});
-
 
 var app = builder.Build();
 
@@ -67,9 +28,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
-app.UseAuthentication();
-app.UseAuthorization();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");

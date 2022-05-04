@@ -1,4 +1,4 @@
-using KC.Models;
+using KC.Library;
 using KC.WebApplication.Data;
 using Microsoft.AspNetCore.Components;
 
@@ -18,6 +18,6 @@ public class WeatherForecastViewBase : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        Forecasts = await WeatherForecastService.GetWeatherForecastAsync();
+        Forecasts = await WeatherForecastService.GetWeatherForecastAsync()!;
     }
 }
