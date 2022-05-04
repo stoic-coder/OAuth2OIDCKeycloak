@@ -34,8 +34,12 @@ public class WeatherForecastViewBase : ComponentBase
         {
             HasOokWeatherClaim = true;
         }
-        
-        Forecasts = await WeatherForecastService!.GetWeatherForecastAsync()!;
+
+        if (HasOokWeatherClaim)
+        {
+            Forecasts = await WeatherForecastService!.GetWeatherForecastAsync()!;            
+        }
+
     }
 
     public bool HasOokWeatherClaim { get; set; }
